@@ -18,7 +18,7 @@ const resultElement = document.querySelector("#result");
 let userChioce;
 let userNumber;
 let computerChoice;
-let computerNumber;
+let computerNumber = "";
 let sum;
 
 // funzione che genera un numero random da 1 a 5
@@ -67,17 +67,26 @@ submitButtonElement.addEventListener('click',
         sum = Number(computerNumber) + Number(userNumber);
         evenOdd(sum);
 
-        // in base all'esito stampo in pagina il risultato
-        if (evenOdd(sum) == userChioce) {
-            resultElement.innerHTML = `Tu hai scelto ${userChioce} e hai buttato ${userNumber}.` + "<br>" + 
-            `Il Computer ha scelto ${computerChoice} e ha buttato ${computerNumber}.` +  "<br>" + 
-            `${userNumber} + ${computerNumber} = ${sum}.`+ "<br>" + 
-            "<strong>Hai vinto!</strong>"
+        // controllo se l'utente ha inserito correttamente i dati
+        if (computerNumber == "") {
+            resultElement.innerHTML = "Scegli pari o dispari per giocare"
+        } else if (userNumber == "" || userNumber > 5 || userNumber < 0){
+            resultElement.innerHTML = "Inserisci un numero da 1 a 5 per giocare"
         } else {
-            resultElement.innerHTML = `Tu hai scelto ${userChioce} e hai buttato ${userNumber}.` + "<br>" + 
-            `Il Computer ha scelto ${computerChoice} e ha buttato ${computerNumber}.` +  "<br>" + 
-            `${userNumber} + ${computerNumber} = ${sum}.`+ "<br>" + 
-            "<strong>Hai perso!</strong>"
+
+            // in base all'esito stampo in pagina il risultato
+            if (evenOdd(sum) == userChioce) {
+                resultElement.innerHTML = `Tu hai scelto ${userChioce} e hai buttato ${userNumber}.` + "<br>" + 
+                `Il Computer ha scelto ${computerChoice} e ha buttato ${computerNumber}.` +  "<br>" + 
+                `${userNumber} + ${computerNumber} = ${sum}.`+ "<br>" + 
+                "<strong>Hai vinto!</strong>"
+            } else {
+                resultElement.innerHTML = `Tu hai scelto ${userChioce} e hai buttato ${userNumber}.` + "<br>" + 
+                `Il Computer ha scelto ${computerChoice} e ha buttato ${computerNumber}.` +  "<br>" + 
+                `${userNumber} + ${computerNumber} = ${sum}.`+ "<br>" + 
+                "<strong>Hai perso!</strong>"
+            }
         }
+
     }
 )
